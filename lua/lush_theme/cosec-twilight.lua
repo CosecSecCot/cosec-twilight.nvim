@@ -115,8 +115,9 @@ local theme = lush(function(injected_functions)
         -- MoreMsg        { }, -- |more-prompt|
         NonText { fg = grey }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
         Normal { fg = white, bg = darkgrey.da(30) }, -- Normal text
-        NormalFloat { Normal }, -- Normal text in floating windows.
-        -- FloatBorder { fg = grey, bg = nil }, -- Border of floating windows.
+        NormalFloat { bg = darkgrey.da(90), fg = white.de(50).da(10) }, -- Normal text in floating windows.
+        -- NormalFloat { Normal }, -- Normal text in floating windows.
+        FloatBorder { fg = grey, bg = NormalFloat.bg }, -- Border of floating windows.
         -- FloatTitle     { }, -- Title of floating windows.
         -- NormalNC       { }, -- normal text in non-current windows
         Pmenu { fg = lightgrey.li(30), bg = grey }, -- Popup menu: Normal item.
@@ -127,7 +128,7 @@ local theme = lush(function(injected_functions)
         -- PmenuExtraSel  { }, -- Popup menu: Selected item "extra text"
         PmenuSbar { fg = Pmenu.fg, bg = Pmenu.bg.da(20) }, -- Popup menu: Scrollbar.
         PmenuThumb { PmenuSbar, gui = "reverse" }, -- Popup menu: Thumb of the scrollbar.
-        Question { fg = green.ro(20).sa(20).da(10), gui = "bold" }, -- |hit-enter| prompt and yes/no questions
+        Question { fg = green.ro(20).da(10), gui = "bold" }, -- |hit-enter| prompt and yes/no questions
         QuickFixLine { bg = grey, gui = "bold" }, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
         Search { bg = lightgrey, gui = "bold, italic" }, -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
         SpecialKey { fg = grey }, -- Unprintable characters: text displayed differently from what it really is. But not 'listchars' whitespace. |hl-Whitespace|
@@ -179,7 +180,7 @@ local theme = lush(function(injected_functions)
         -- Keyword        { }, --   any other keyword
         -- Exception      { }, --   try, catch, throw
 
-        PreProc { fg = grey_blue }, -- (*) Generic Preprocessor
+        PreProc { fg = light_grey_blue }, -- (*) Generic Preprocessor
         -- Include        { }, --   Preprocessor #include
         -- Define         { }, --   Preprocessor #define
         -- Macro          { }, --   Same as Define
@@ -187,11 +188,11 @@ local theme = lush(function(injected_functions)
 
         Type { fg = yellow, gui = "italic" }, -- (*) int, long, char, etc.
         -- StorageClass   { }, --   static, register, volatile, etc.
-        Structure { fg = violet }, --   struct, union, enum, etc.
+        Structure { fg = violet, gui = "italic" }, --   struct, union, enum, etc.
         -- Typedef        { }, --   A typedef
 
         Special { fg = darkgrey.li(30) }, -- (*) Any special symbol
-        SpecialChar { fg = lightgreen }, --   Special character in a constant
+        SpecialChar { fg = light_grey_blue }, --   Special character in a constant
         -- Tag            { }, --   You can use CTRL-] on this
         -- Delimiter      { }, --   Character that needs attention
         -- SpecialComment { }, --   Special things inside a comment (e.g. '\n')
@@ -200,7 +201,7 @@ local theme = lush(function(injected_functions)
         Underlined { gui = "undercurl" }, -- Text that stands out, HTML links
         -- Ignore         { }, -- Left blank, hidden |hl-Ignore| (NOTE: May be invisible here in template)
         Error { ErrorMsg, gui = "bold, undercurl" }, -- Any erroneous construct
-        Todo { fg = grey_blue, gui = "italic, bold" }, -- Anything that needs extra attention; mostly the keywords TODO FIXME and XXX
+        Todo { fg = light_grey_blue, gui = "italic, bold" }, -- Anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 
         -- These groups are for the native LSP client and diagnostic system. Some
         -- other LSP clients may use these groups, or use their own. Consult your
