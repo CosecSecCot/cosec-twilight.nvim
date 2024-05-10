@@ -52,16 +52,17 @@ local theme = lush(function(injected_functions)
     local sym = injected_functions.sym
 
     local grey_blue = hsl(189, 6, 57)
-    local light_grey_blue = hsl(210, 9, 66)
+    local light_grey_blue = hsl(210, 9, 66).li(20)
     local dark_grey_blue = hsl(210, 7, 22)
     local mid_grey_blue = hsl(210, 4, 41)
     local beige = hsl(42, 45, 65)
     local light_orange = hsl(41, 75, 68)
     local yellow = hsl(51, 58, 74)
     local violet = hsl(291, 10, 64)
+    local light_violet = hsl(291, 10, 64).li(40)
     local green = hsl(67, 25, 55)
     local lightgreen = hsl(67, 35, 67)
-    local red = hsl(22, 56, 58)
+    local red = hsl(22, 56, 58).ro(-10)
     local cyan = hsl(179, 58, 65)
     local darkgrey = hsl(0, 0, 10)
     local grey = hsl(0, 0, 19)
@@ -87,7 +88,7 @@ local theme = lush(function(injected_functions)
         -- CursorIM       { }, -- Like Cursor, but used when in IME mode |CursorIM|
         CursorColumn {}, -- Screen-column at the cursor, when 'cursorcolumn' is set.
         CursorLine {}, -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
-        Directory { fg = lightgreen }, -- Directory names (and other special names in listings)
+        Directory { fg = violet }, -- Directory names (and other special names in listings)
         DiffAdd { fg = white, bg = hsl(104, 12, 18) }, -- Diff mode: Added line |diff.txt|
         DiffChange { fg = white, bg = hsl(240, 18, 18) }, -- Diff mode: Changed line |diff.txt|
         DiffDelete { fg = hsl(359, 52, 51), bg = hsl(346, 30, 20) }, -- Diff mode: Deleted line |diff.txt|
@@ -161,18 +162,18 @@ local theme = lush(function(injected_functions)
 
         Comment { fg = mid_grey_blue.da(50), gui = "italic" }, -- Any comment
 
-        Constant { fg = red }, -- (*) Any constant
+        Constant { fg = violet, gui = "bold" }, -- (*) Any constant
         String { fg = green }, --   A string constant: "this is a string"
-        -- Character      { }, --   A character constant: 'c', '\n'
-        -- Number         { }, --   A number constant: 234, 0xff
-        -- Boolean        { }, --   A boolean constant: TRUE, false
-        -- Float          { }, --   A floating point constant: 2.3e10
+        Character { fg = green }, --   A character constant: 'c', '\n'
+        Number { fg = red }, --   A number constant: 234, 0xff
+        Boolean { fg = red }, --   A boolean constant: TRUE, false
+        Float { fg = red }, --   A floating point constant: 2.3e10
 
         Identifier { fg = grey_blue }, -- (*) Any variable name
 
-        Function { fg = violet }, --   Function name (also: methods for classes)
+        Function { fg = yellow }, --   Function name (also: methods for classes)
 
-        Statement { fg = beige, gui = "bold, italic" }, -- (*) Any statement
+        Statement { fg = violet.de(50).da(20) }, -- (*) Any statement
         -- Conditional    { }, --   if, then, else, endif, switch, etc.
         -- Repeat         { }, --   for, do, while, etc.
         -- Label          { }, --   case, default, etc.
@@ -183,20 +184,20 @@ local theme = lush(function(injected_functions)
         PreProc { fg = light_grey_blue }, -- (*) Generic Preprocessor
         -- Include        { }, --   Preprocessor #include
         -- Define         { }, --   Preprocessor #define
-        -- Macro          { }, --   Same as Define
+        Macro { fg = beige, gui = "bold" }, --   Same as Define
         -- PreCondit      { }, --   Preprocessor #if, #else, #endif, etc.
 
-        Type { fg = yellow, gui = "italic" }, -- (*) int, long, char, etc.
+        Type { fg = light_violet, gui = "italic" }, -- (*) int, long, char, etc.
         -- StorageClass   { }, --   static, register, volatile, etc.
-        Structure { fg = violet, gui = "italic" }, --   struct, union, enum, etc.
+        -- Structure { fg = violet, gui = "bold, italic" }, --   struct, union, enum, etc.
         -- Typedef        { }, --   A typedef
 
         Special { fg = darkgrey.li(30) }, -- (*) Any special symbol
-        SpecialChar { fg = light_grey_blue }, --   Special character in a constant
+        SpecialChar { fg = lightgreen.li(20) }, --   Special character in a constant
         -- Tag            { }, --   You can use CTRL-] on this
-        -- Delimiter      { }, --   Character that needs attention
+        Delimiter { fg = violet.de(50).da(20) }, --   Character that needs attention
         -- SpecialComment { }, --   Special things inside a comment (e.g. '\n')
-        -- Debug          { }, --   Debugging statements
+        Debug { fg = red.de(50) }, --   Debugging statements
 
         Underlined { gui = "undercurl" }, -- Text that stands out, HTML links
         -- Ignore         { }, -- Left blank, hidden |hl-Ignore| (NOTE: May be invisible here in template)
@@ -269,8 +270,9 @@ local theme = lush(function(injected_functions)
         -- sym"@text.todo"         { }, -- Todo
         -- sym"@comment"           { }, -- Comment
         -- sym"@punctuation"       { }, -- Delimiter
+        sym "@punctuation.bracket" { Special },
         -- sym"@constant"          { }, -- Constant
-        -- sym"@constant.builtin"  { }, -- Special
+        sym "@constant.builtin" { Constant }, -- Special
         -- sym"@constant.macro"    { }, -- Define
         -- sym"@define"            { }, -- Define
         -- sym"@macro"             { }, -- Macro
@@ -283,10 +285,11 @@ local theme = lush(function(injected_functions)
         -- sym"@boolean"           { }, -- Boolean
         -- sym"@float"             { }, -- Float
         -- sym"@function"          { }, -- Function
-        -- sym"@function.builtin"  { }, -- Special
+        sym "@function.builtin" { Constant }, -- Special
         -- sym"@function.macro"    { }, -- Macro
         -- sym"@parameter"         { }, -- Identifier
-        -- sym"@method"            { }, -- Function
+        -- sym"@method" {}, -- Function
+        sym "@module" { fg = light_violet, gui = "italic" },
         -- sym"@field"             { }, -- Identifier
         -- sym"@property"          { }, -- Identifier
         -- sym"@constructor"       { }, -- Special
@@ -295,10 +298,13 @@ local theme = lush(function(injected_functions)
         -- sym"@label"             { }, -- Label
         -- sym"@operator"          { }, -- Operator
         -- sym"@keyword"           { }, -- Keyword
+        sym "@keyword.import" { PreProc },
         -- sym"@exception"         { }, -- Exception
         -- sym"@variable"          { }, -- Identifier
+        sym "@variable.member" { fg = light_grey_blue },
         -- sym"@type"              { }, -- Type
-        -- sym"@type.definition"   { }, -- Typedef
+        sym "@type.builtin" { fg = violet, gui = "italic, bold" },
+        sym "@type.definition" { fg = light_violet, gui = "italic" }, -- Typedef
         -- sym"@storageclass"      { }, -- StorageClass
         -- sym"@structure"         { }, -- Structure
         -- sym"@namespace"         { }, -- Identifier
