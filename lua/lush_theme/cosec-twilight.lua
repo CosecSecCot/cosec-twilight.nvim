@@ -60,6 +60,7 @@ local theme = lush(function(injected_functions)
     local yellow = hsl(51, 58, 74)
     local violet = hsl(291, 10, 64)
     local light_violet = hsl(291, 10, 64).li(40)
+    local dark_violet = hsl(291, 10, 64).de(50).da(20)
     local green = hsl(67, 25, 55)
     local lightgreen = hsl(67, 35, 67)
     local red = hsl(22, 56, 58).ro(-10)
@@ -114,7 +115,7 @@ local theme = lush(function(injected_functions)
         -- MsgArea        { }, -- Area for messages and cmdline
         -- MsgSeparator   { }, -- Separator for scrolled messages, `msgsep` flag of 'display'
         -- MoreMsg        { }, -- |more-prompt|
-        NonText { fg = grey }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
+        NonText { fg = grey.da(10) }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
         Normal { fg = white, bg = darkgrey.da(30) }, -- Normal text
         NormalFloat { bg = darkgrey.da(90), fg = white.de(50).da(10) }, -- Normal text in floating windows.
         -- NormalFloat { Normal }, -- Normal text in floating windows.
@@ -160,7 +161,7 @@ local theme = lush(function(injected_functions)
         --
         -- Uncomment and edit if you want more specific syntax highlighting.
 
-        Comment { fg = mid_grey_blue.da(50), gui = "italic" }, -- Any comment
+        Comment { fg = mid_grey_blue.da(40), gui = "italic" }, -- Any comment
 
         Constant { fg = violet, gui = "bold" }, -- (*) Any constant
         String { fg = green }, --   A string constant: "this is a string"
@@ -173,7 +174,7 @@ local theme = lush(function(injected_functions)
 
         Function { fg = yellow }, --   Function name (also: methods for classes)
 
-        Statement { fg = violet.de(50).da(20) }, -- (*) Any statement
+        Statement { fg = dark_violet }, -- (*) Any statement
         -- Conditional    { }, --   if, then, else, endif, switch, etc.
         -- Repeat         { }, --   for, do, while, etc.
         -- Label          { }, --   case, default, etc.
@@ -194,9 +195,9 @@ local theme = lush(function(injected_functions)
 
         Special { fg = darkgrey.li(30) }, -- (*) Any special symbol
         SpecialChar { fg = lightgreen.li(20) }, --   Special character in a constant
-        -- Tag            { }, --   You can use CTRL-] on this
-        Delimiter { fg = violet.de(50).da(20) }, --   Character that needs attention
-        -- SpecialComment { }, --   Special things inside a comment (e.g. '\n')
+        Tag { fg = violet }, --   You can use CTRL-] on this
+        Delimiter { fg = dark_violet }, --   Character that needs attention
+        SpecialComment { fg = violet }, --   Special things inside a comment (e.g. '\n')
         Debug { fg = red.de(50) }, --   Debugging statements
 
         Underlined { gui = "undercurl" }, -- Text that stands out, HTML links
@@ -311,7 +312,9 @@ local theme = lush(function(injected_functions)
         -- sym"@include"           { }, -- Include
         -- sym"@preproc"           { }, -- PreProc
         -- sym"@debug"             { }, -- Debug
-        -- sym"@tag"               { }, -- Tag
+        sym "@tag.builtin" { fg = light_violet }, -- Tag
+        sym "@tag.delimiter" { Special }, -- Tag
+        sym "@tag.attribute" { fg = dark_violet, gui = "italic" }, -- Tag Attribute
     }
 end)
 
