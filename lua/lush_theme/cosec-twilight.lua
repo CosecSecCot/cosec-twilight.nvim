@@ -90,8 +90,8 @@ local theme = lush(function(injected_functions)
         CursorColumn {}, -- Screen-column at the cursor, when 'cursorcolumn' is set.
         CursorLine {}, -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
         Directory { fg = violet }, -- Directory names (and other special names in listings)
-        DiffAdd { fg = white, bg = hsl(104, 12, 18) }, -- Diff mode: Added line |diff.txt|
-        DiffChange { fg = white, bg = hsl(240, 18, 18) }, -- Diff mode: Changed line |diff.txt|
+        DiffAdd { fg = white.ro(20).de(50).da(50), bg = hsl(104, 12, 18) }, -- Diff mode: Added line |diff.txt|
+        DiffChange { fg = white.ro(180).de(70).da(50), bg = hsl(240, 18, 18) }, -- Diff mode: Changed line |diff.txt|
         DiffDelete { fg = hsl(359, 52, 51), bg = hsl(346, 30, 20) }, -- Diff mode: Deleted line |diff.txt|
         DiffText { fg = white, bg = hsl(37, 10, 26) }, -- Diff mode: Changed text within a changed line |diff.txt|
         -- EndOfBuffer    { }, -- Filler lines (~) after the end of the buffer. By default, this is highlighted like |hl-NonText|.
