@@ -107,7 +107,7 @@ local theme = lush(function(injected_functions)
         LineNr { fg = mid_grey_blue.da(30) }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
         -- LineNrAbove    { }, -- Line number for when the 'relativenumber' option is set, above the cursor line
         -- LineNrBelow    { }, -- Line number for when the 'relativenumber' option is set, below the cursor line
-        -- CursorLineNr   { }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
+        CursorLineNr { fg = light_orange, gui = "bold" }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
         -- CursorLineFold { }, -- Like FoldColumn when 'cursorline' is set for the cursor line
         -- CursorLineSign { }, -- Like SignColumn when 'cursorline' is set for the cursor line
         MatchParen { fg = white, gui = "bold" }, -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
@@ -161,7 +161,7 @@ local theme = lush(function(injected_functions)
         --
         -- Uncomment and edit if you want more specific syntax highlighting.
 
-        Comment { fg = mid_grey_blue.da(40), gui = "italic" }, -- Any comment
+        Comment { fg = mid_grey_blue.da(30), gui = "italic" }, -- Any comment
 
         Constant { fg = violet, gui = "bold" }, -- (*) Any constant
         String { fg = green }, --   A string constant: "this is a string"
@@ -245,6 +245,9 @@ local theme = lush(function(injected_functions)
         -- DiagnosticSignInfo         { } , -- Used for "Info" signs in sign column.
         -- DiagnosticSignHint         { } , -- Used for "Hint" signs in sign column.
         -- DiagnosticSignOk           { } , -- Used for "Ok" signs in sign column.
+
+        -- NvimTree highlight groups.
+        NvimTreeWindowPicker { fg = Normal.fg, bg = light_grey_blue.da(20), gui = "bold" },
 
         -- Tree-Sitter syntax groups.
         --
