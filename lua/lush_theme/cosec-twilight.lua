@@ -249,6 +249,7 @@ local theme = lush(function(injected_functions)
 
         -- NvimTree highlight groups.
         NvimTreeWindowPicker { fg = Normal.fg, bg = light_grey_blue.da(20), gui = "bold" },
+        NvimTreeFolderIcon { fg = grey_blue },
 
         -- Git highlight groups.
         Added { DiagnosticOk },
