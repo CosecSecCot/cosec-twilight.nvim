@@ -161,7 +161,7 @@ local theme = lush(function(injected_functions)
         --
         -- Uncomment and edit if you want more specific syntax highlighting.
 
-        Comment { fg = mid_grey_blue.da(30), gui = "italic" }, -- Any comment
+        Comment { fg = mid_grey_blue.da(20), gui = "italic" }, -- Any comment
 
         Constant { fg = violet, gui = "bold" }, -- (*) Any constant
         String { fg = green }, --   A string constant: "this is a string"
@@ -178,7 +178,7 @@ local theme = lush(function(injected_functions)
         -- Conditional    { }, --   if, then, else, endif, switch, etc.
         -- Repeat         { }, --   for, do, while, etc.
         -- Label          { }, --   case, default, etc.
-        Operator { fg = light_orange.de(20) }, --   "sizeof", "+", "*", etc.
+        Operator { fg = beige }, --   "sizeof", "+", "*", etc.
         -- Keyword        { }, --   any other keyword
         -- Exception      { }, --   try, catch, throw
 
@@ -194,7 +194,8 @@ local theme = lush(function(injected_functions)
         -- Typedef        { }, --   A typedef
 
         Special { fg = darkgrey.li(30) }, -- (*) Any special symbol
-        SpecialChar { fg = lightgreen.li(20) }, --   Special character in a constant
+        -- SpecialChar { fg = lightgreen.li(20) }, --   Special character in a constant
+        SpecialChar { fg = light_orange }, --   Special character in a constant
         Tag { fg = violet }, --   You can use CTRL-] on this
         Delimiter { fg = dark_violet }, --   Character that needs attention
         SpecialComment { fg = violet }, --   Special things inside a comment (e.g. '\n')
@@ -220,11 +221,11 @@ local theme = lush(function(injected_functions)
 
         -- See :h diagnostic-highlights, some groups may not be listed, submit a PR fix to lush-template!
         --
-        DiagnosticError { ErrorMsg, gui = "undercurl" }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-        DiagnosticWarn { fg = light_orange, gui = "underline" }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-        DiagnosticInfo { fg = cyan.li(10) }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-        DiagnosticHint { fg = cyan.da(10) }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-        DiagnosticOk { fg = green.ro(10).li(20).sa(20) }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+        DiagnosticError { ErrorMsg, gui = "" }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+        DiagnosticWarn { fg = light_orange }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+        DiagnosticInfo { fg = grey_blue.de(10).da(20) }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+        DiagnosticHint { fg = light_grey_blue.sa(30).li(10) }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+        DiagnosticOk { fg = Question.fg.li(10) }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
         -- DiagnosticVirtualTextError { } , -- Used for "Error" diagnostic virtual text.
         -- DiagnosticVirtualTextWarn  { } , -- Used for "Warn" diagnostic virtual text.
         -- DiagnosticVirtualTextInfo  { } , -- Used for "Info" diagnostic virtual text.
@@ -248,6 +249,10 @@ local theme = lush(function(injected_functions)
 
         -- NvimTree highlight groups.
         NvimTreeWindowPicker { fg = Normal.fg, bg = light_grey_blue.da(20), gui = "bold" },
+
+        -- Git highlight groups.
+        Added { DiagnosticOk },
+        Removed { DiagnosticError },
 
         -- Tree-Sitter syntax groups.
         --
@@ -274,7 +279,7 @@ local theme = lush(function(injected_functions)
         -- sym"@text.todo"         { }, -- Todo
         -- sym"@comment"           { }, -- Comment
         -- sym"@punctuation"       { }, -- Delimiter
-        sym "@punctuation.bracket" { Special },
+        sym "@punctuation.bracket" { fg = Special.fg, gui = "bold" },
         -- sym"@constant"          { }, -- Constant
         sym "@constant.builtin" { Constant }, -- Special
         -- sym"@constant.macro"    { }, -- Define
