@@ -64,7 +64,7 @@ local theme = lush(function(injected_functions)
     local green = hsl(67, 25, 55)
     local lightgreen = hsl(67, 35, 67)
     local red = hsl(22, 56, 58).ro(-10)
-    local cyan = hsl(179, 58, 65)
+    -- local cyan = hsl(179, 58, 65)
     local darkgrey = hsl(0, 0, 10)
     local grey = hsl(0, 0, 19)
     local lightgrey = hsl(7, 4, 36)
@@ -104,10 +104,10 @@ local theme = lush(function(injected_functions)
         SignColumn {}, -- Column where |signs| are displayed
         -- IncSearch      { }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
         Substitute { fg = darkgrey, bg = lightgreen }, -- |:substitute| replacement text highlighting
-        LineNr { fg = mid_grey_blue.da(30) }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
+        LineNr { bg = darkgrey, fg = mid_grey_blue.da(30) }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
         -- LineNrAbove    { }, -- Line number for when the 'relativenumber' option is set, above the cursor line
         -- LineNrBelow    { }, -- Line number for when the 'relativenumber' option is set, below the cursor line
-        CursorLineNr { fg = light_orange, gui = "bold" }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
+        CursorLineNr { bg = darkgrey, fg = light_orange, gui = "bold" }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
         -- CursorLineFold { }, -- Like FoldColumn when 'cursorline' is set for the cursor line
         -- CursorLineSign { }, -- Like SignColumn when 'cursorline' is set for the cursor line
         MatchParen { fg = white, gui = "bold" }, -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
