@@ -23,6 +23,9 @@ Using `lazy`:
 ``` lua
 return {
     "CosecSecCot/cosec-twilight.nvim",
+    lazy = false,
+    priority = 1000,
+    dependencies = "rktjmp/lush.nvim",
     -- no setup function required (didn't make one :P)
     -- (you can change and customize it using lush according to your preference)
 }
