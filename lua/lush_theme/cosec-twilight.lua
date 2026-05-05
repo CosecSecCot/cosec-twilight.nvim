@@ -64,7 +64,7 @@ local theme = lush(function(injected_functions)
     local green = hsl(67, 25, 55)
     local lightgreen = hsl(67, 35, 67)
     local red = hsl(22, 56, 58).ro(-10)
-    -- local cyan = hsl(179, 58, 65)
+    local cyan = hsl(179, 58, 65)
     local darkgrey = hsl(0, 0, 10)
     local grey = hsl(0, 0, 19)
     local lightgrey = hsl(7, 4, 36)
@@ -99,9 +99,9 @@ local theme = lush(function(injected_functions)
         -- TermCursorNC   { }, -- Cursor in an unfocused terminal
         ErrorMsg { fg = red.ro(-10).de(30), gui = "bold" }, -- Error messages on the command line
         VertSplit { fg = grey }, -- Column separating vertically split windows
-        Folded {}, -- Line used for closed folds
-        FoldColumn {}, -- 'foldcolumn'
-        SignColumn {}, -- Column where |signs| are displayed
+        Folded { bg = darkgrey }, -- Line used for closed folds
+        FoldColumn { bg = darkgrey }, -- 'foldcolumn'
+        SignColumn { bg = darkgrey }, -- Column where |signs| are displayed
         -- IncSearch      { }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
         Substitute { fg = darkgrey, bg = lightgreen }, -- |:substitute| replacement text highlighting
         LineNr { bg = darkgrey, fg = mid_grey_blue.da(30) }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
